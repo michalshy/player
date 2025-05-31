@@ -39,7 +39,7 @@ file(GLOB_RECURSE PROJECT_SOURCES
 
 # Add miniaudio implementation file if not already included
 set(MINIAUDIO_SOURCES
-    ${CMAKE_CURRENT_SOURCE_DIR}/third_party/miniaudio/miniaudio.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/third_party/miniaudio/miniaudio.cpp
 )
 
 # Add source files (update with your actual source files)
