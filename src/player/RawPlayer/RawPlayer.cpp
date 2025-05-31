@@ -5,9 +5,14 @@ const char* argv[] = { "RawPlayer", "media/example.mp3" }; // Example file path,
 
 void data_callback(ma_device* pDevice, void* pOutput, const void* pInput, ma_uint32 frameCount)
 {
-    ma_encoder_write_pcm_frames((ma_encoder*)pDevice->pUserData, pInput, frameCount, NULL);
+    ma_decoder* pDecoder = (ma_decoder*)pDevice->pUserData;
+    if (pDecoder == NULL) {
+        return;
+    }
 
-    (void)pOutput;
+    ma_decoder_read_pcm_frames(pDecoder, pOutput, frameCount, NULL);
+
+    (void)pInput;
 }
 
 RawPlayer::RawPlayer(){ RegisterHandlers(); }
@@ -52,7 +57,7 @@ void RawPlayer::Play(const std::string& filePath)
 }
 void RawPlayer::Pause()
 {
-    // Implementation for pausing playback
+    ma_device_stop(&device);
 }
 void RawPlayer::Stop()
 {
