@@ -3,6 +3,7 @@
 
 #include "back/Backend.hpp"
 #include "front/Frontend.hpp"
+#include "player/IPlayer.hpp"
 class App
 {
 public:
@@ -13,6 +14,8 @@ public:
     bool Shutdown();
     void Exit();
 private:
+    IPlayer* player = nullptr; // Pointer to the audio player
+
     Backend backend;
     Frontend frontend;
 

@@ -1,5 +1,6 @@
 #include "App.hpp"
 #include "front/Frontend.hpp"
+#include "player/RawPlayer/RawPlayer.hpp"
 #include "utils/EventSystem.hpp"
 App::App(){ /* Do nothing */ }
 App::~App(){ /* Do nothing */ }
@@ -7,6 +8,11 @@ App::~App(){ /* Do nothing */ }
 bool App::Init()
 {
     bool result;
+    player = new RawPlayer(); // Initialize the audio player
+    if (!player)
+    {
+        return false; // Failed to create player
+    }
     EventSystem::RegisterEventHandler(EventType::Quit, [this]() { Exit(); });
     result = backend.Init();
     return result;

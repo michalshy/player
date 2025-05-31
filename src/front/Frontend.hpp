@@ -7,9 +7,7 @@ public:
     Frontend();
     ~Frontend();
     void Render();
-
 private:
-
 };
 
 #endif
