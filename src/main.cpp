@@ -1,18 +1,15 @@
-#include "backend/Backend.hpp"
+#include "App.hpp"
 
 int main(int, char**)
 {
-    
-    Backend backend;
-    if (!backend.Init())
+    App app;
+    if (!app.Init())
     {
-        backend.Shutdown();
+        app.Shutdown();
         return 1;
     }
-    while (backend.Render())
-    {
-        continue;
-    }
+    (void)app.Run();
+    
     return 0;
 }
 

@@ -1,6 +1,10 @@
 # Minimum CMake version
 cmake_minimum_required(VERSION 3.30)
 
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
 # Project name
 project(player)
 
@@ -23,12 +27,16 @@ set(IMGUI_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/third_party/imgui/misc/cpp/imgui_stdlib.cpp
 )
 
+# Recursively find all .cpp and .hpp files in src/
+file(GLOB_RECURSE PROJECT_SOURCES
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/*.hpp
+)
+
 # Add source files (update with your actual source files)
 add_executable(player 
-    src/main.cpp 
+    ${PROJECT_SOURCES}
     ${IMGUI_SOURCES}
-    src/backend/Backend.cpp    
-    src/backend/Backend.hpp    
 )
 
 # Link against DirectX 11 libraries
